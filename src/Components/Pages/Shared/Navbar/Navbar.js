@@ -55,7 +55,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4 mx-6">
             <div className="">
-              <img className="w-40 rounded" src={logo1} alt="" />
+              <img className="w-40 min-w-[10rem] rounded" src={logo1} alt="" />
             </div>
             {/* <div className="">
               <h2 className=" text-3xl font-semibold">Shahi Kitchen</h2>
@@ -120,7 +120,7 @@ const Navbar = () => {
             <div className="dropdown dropdown-end  ">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src="" alt="" title="" />
+                  <img src={user?.photoURL} alt="" title="" />
                 </div>
               </label>
               <ul

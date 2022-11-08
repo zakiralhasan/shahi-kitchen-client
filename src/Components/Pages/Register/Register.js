@@ -4,7 +4,7 @@ import { AuthContext } from "../../../Context/AuthProvider";
 
 const Register = () => {
   const [errorMessage, setErrorMessage] = useState(null);
-  const { creatUser } = useContext(AuthContext);
+  const { creatUser, updateUserProfile } = useContext(AuthContext);
 
   const handleForm = (event) => {
     event.preventDefault();
@@ -19,6 +19,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        updateUserInfoWithPicture(name, imgURL);
         form.reset();
         setErrorMessage("");
       })
@@ -26,6 +27,16 @@ const Register = () => {
         const errorMsg = error.message;
         setErrorMessage(errorMsg);
         form.reset();
+      });
+  };
+
+  //update user profile with name and picture
+  const updateUserInfoWithPicture = (name, imgURL) => {
+    updateUserProfile({ displayName: name, photoURL: imgURL })
+      .then(() => {})
+      .catch((error) => {
+        const errorMsg = error.message;
+        setErrorMessage(errorMsg);
       });
   };
   return (
