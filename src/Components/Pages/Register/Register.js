@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 import { AuthContext } from "../../../Context/AuthProvider";
 
 const Register = () => {
   const [errorMessage, setErrorMessage] = useState(null);
-  const { creatUser, updateUserProfile } = useContext(AuthContext);
+  const { creatUser, updateUserProfile, userEmailVerification } =
+    useContext(AuthContext);
 
   const handleForm = (event) => {
     event.preventDefault();
@@ -13,15 +15,18 @@ const Register = () => {
     const imgURL = form.imgURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, imgURL, email, password);
 
     creatUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
         updateUserInfoWithPicture(name, imgURL);
+        userVerification();
         form.reset();
         setErrorMessage("");
+        swal(
+          "A verification email has been sent to your email address! Please check."
+        );
       })
       .catch((error) => {
         const errorMsg = error.message;
@@ -34,6 +39,16 @@ const Register = () => {
   const updateUserInfoWithPicture = (name, imgURL) => {
     updateUserProfile({ displayName: name, photoURL: imgURL })
       .then(() => {})
+      .catch((error) => {
+        const errorMsg = error.message;
+        setErrorMessage(errorMsg);
+      });
+  };
+
+  //verify user through valid mail
+  const userVerification = () => {
+    userEmailVerification()
+      .then()
       .catch((error) => {
         const errorMsg = error.message;
         setErrorMessage(errorMsg);
