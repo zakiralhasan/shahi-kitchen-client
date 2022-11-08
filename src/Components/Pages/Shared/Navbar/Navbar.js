@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import logo1 from "../../../../images/logo/logo-5.png";
+import { AuthContext } from "../../../../Context/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+  const hndleUserLogout = () => {
+    logOutUser()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   return (
     <div>
       <div className="navbar bg-gray-600 flex ">
@@ -101,35 +108,38 @@ const Navbar = () => {
           </div>
         </div>
         {/* end */}
-        <div className="text-white">
-          <Link to="/login">
-            <button className=" normal-case mr-2 text-xl">Login</button>
-          </Link>
-          <FaUserAlt className="text-xl" />
-        </div>
-        <div className="">
-          <div className="dropdown dropdown-end  ">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img src="" alt="" title="" />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-sm w-32"
-            >
-              <li>
-                <a className="">Profile</a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <button>Logout</button>
-              </li>
-            </ul>
+        {!user?.uid ? (
+          <div className="text-white">
+            <Link to="/login">
+              <button className=" normal-case mr-2 text-xl">Login</button>
+            </Link>
+            <FaUserAlt className="text-xl" />
           </div>
-        </div>
+        ) : (
+          <div className="">
+            <div className="dropdown dropdown-end  ">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src="" alt="" title="" />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-sm w-32"
+              >
+                <li>
+                  <a className="">Profile</a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
+                <li>
+                  <button onClick={hndleUserLogout}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
