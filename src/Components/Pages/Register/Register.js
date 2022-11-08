@@ -55,7 +55,7 @@ const Register = () => {
                   <label className="label">
                     <Link
                       to="/login"
-                      className="label-text-alt link link-hover text-gray-400"
+                      className="label-text-alt link link-hover text-gray-400 mt-1"
                     >
                       Already have an account?
                     </Link>
