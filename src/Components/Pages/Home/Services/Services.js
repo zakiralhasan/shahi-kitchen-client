@@ -10,7 +10,7 @@ const Services = () => {
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
-  console.log(services);
+
   return (
     <div className="">
       <h1>services</h1>
