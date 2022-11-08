@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
-import logo1 from "../../../../images/logo/logo-1.png";
+import logo1 from "../../../../images/logo/logo-5.png";
 
 const Navbar = () => {
   return (
     <div>
-      <div className="navbar bg-sky-200 flex">
+      <div className="navbar bg-gray-600 flex ">
         <div className="grow">
           <div className=" block sm:hidden">
             <div className="dropdown">
@@ -55,7 +55,7 @@ const Navbar = () => {
             </div> */}
           </div>
 
-          <div className="hidden sm:block">
+          <div className="hidden sm:block text-white">
             <ul className="flex">
               <li>
                 <NavLink
@@ -101,11 +101,9 @@ const Navbar = () => {
           </div>
         </div>
         {/* end */}
-        <div>
+        <div className="text-white">
           <Link to="/login">
-            <button className="btn btn-sm btn-ghost normal-case mr-2 text-xl">
-              Login
-            </button>
+            <button className=" normal-case mr-2 text-xl">Login</button>
           </Link>
           <FaUserAlt className="text-xl" />
         </div>
