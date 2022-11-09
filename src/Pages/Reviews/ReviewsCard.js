@@ -16,7 +16,7 @@ const ReviewsCard = ({ _id }) => {
 
   //used for get reviews from server.
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews`)
+    fetch(`http://localhost:5000/reviews/${_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [reviews]);
@@ -90,7 +90,7 @@ const ReviewsCard = ({ _id }) => {
         >
           {reviews.map((review) => (
             <SwiperSlide key={review._id}>
-              <div className="min-h-[13rem] border p-4 mx-3 my-6 text-left rounded-md shadow-lg">
+              <div className="min-h-[15rem] border p-4 mx-3 my-6 text-left rounded-md shadow-lg">
                 <div className="flex gap-3 items-center">
                   <img
                     className="w-10 h-10 rounded-full"
