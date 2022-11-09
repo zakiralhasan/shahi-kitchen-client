@@ -27,8 +27,8 @@ const ServiceDetails = () => {
           </div>
         </div>
       </div>
-      <div className="relative">
-        <ReviewsCard></ReviewsCard>
+      <div className="mt-16">
+        <ReviewsCard _id={_id}></ReviewsCard>
       </div>
     </div>
   );

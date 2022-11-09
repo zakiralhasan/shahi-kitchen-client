@@ -10,7 +10,7 @@ const ServicesAll = () => {
   }, []);
   return (
     <div className="my-5">
-      <div className="grid grid-cols-3 gap-4 p-4">
+      <div className="grid sm:grid-cols-3 gap-4 p-4">
         {servicesAll.map((service) => (
           <ServiceCard key={service._id} service={service}></ServiceCard>
         ))}

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
-import { AuthContext } from "../../../Context/AuthProvider";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Register = () => {
   const [errorMessage, setErrorMessage] = useState(null);

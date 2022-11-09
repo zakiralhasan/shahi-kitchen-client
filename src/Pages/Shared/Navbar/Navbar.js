@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
-import logo1 from "../../../../images/logo/logo-5.png";
-import { AuthContext } from "../../../../Context/AuthProvider";
+import logo1 from "../../../images/logo/logo-5.png";
+import { AuthContext } from "../../../Context/AuthProvider";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
-  const hndleUserLogout = () => {
+  const handleUserLogout = () => {
     logOutUser()
       .then(() => {})
       .catch((error) => console.error(error));
@@ -116,7 +116,31 @@ const Navbar = () => {
             <FaUserAlt className="text-xl" />
           </div>
         ) : (
-          <div className="">
+          <div>
+            <div className="text-white hidden sm:block">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `text-red-600 mr-5` : `hover:text-red-600 mr-5`
+                }
+                to="/reviews"
+              >
+                My Reviews
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `text-red-600 mr-5` : `hover:text-red-600 mr-5`
+                }
+                to="/add-services"
+              >
+                Add Service
+              </NavLink>
+              <button
+                onClick={handleUserLogout}
+                className=" normal-case mr-5 hover:text-red-500"
+              >
+                Logout
+              </button>
+            </div>
             <div className="dropdown dropdown-end  ">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
@@ -127,14 +151,14 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-sm w-32"
               >
+                <Link to="/reviews">
+                  <li>My Reviews</li>
+                </Link>
+                <Link to="/add-services">
+                  <li>Add Service</li>
+                </Link>
                 <li>
-                  <a className="">Profile</a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <button onClick={hndleUserLogout}>Logout</button>
+                  <button onClick={handleUserLogout}>Logout</button>
                 </li>
               </ul>
             </div>
