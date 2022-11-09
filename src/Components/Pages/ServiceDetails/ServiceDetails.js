@@ -1,11 +1,12 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import ReviewsCard from "../Reviews/ReviewsCard";
 
 const ServiceDetails = () => {
   const { _id, title, details, img, price, ratings } = useLoaderData();
 
   return (
-    <div>
+    <div className="relative">
       <div className="flex flex-col lg:flex-row-reverse  gap-4 items-center p-3 my-5 mx-2 border shadow-md">
         <div className="basis-1/2 p-4">
           <img className="rounded-lg border-2 shadow-lg" src={img} alt="" />
@@ -25,6 +26,9 @@ const ServiceDetails = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="relative">
+        <ReviewsCard></ReviewsCard>
       </div>
     </div>
   );

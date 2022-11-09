@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
@@ -12,13 +13,17 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="">
-      <h1>services</h1>
+    <div className="my-5">
       <div className="grid grid-cols-3 gap-4 p-4">
         {services.map((service) => (
           <ServiceCard key={service._id} service={service}></ServiceCard>
         ))}
       </div>
+      <Link to="/services">
+        <button className="text-blue-400 hover:text-white hover:border-white border-2 border-blue-400 px-8 my-2 py-2 rounded-md font-medium hover:bg-gray-700">
+          Show All
+        </button>
+      </Link>
     </div>
   );
 };

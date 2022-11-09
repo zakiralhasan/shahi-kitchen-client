@@ -41,7 +41,7 @@ const Navbar = () => {
                   <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <Link to="/course">Services</Link>
+                  <Link to="/services">Services</Link>
                 </li>
                 <li>
                   <Link to="/FAQ">FAQ</Link>
@@ -79,7 +79,7 @@ const Navbar = () => {
                   className={({ isActive }) =>
                     isActive ? `text-red-600 mr-4` : `hover:text-red-600 mr-4`
                   }
-                  to="/course"
+                  to="/services"
                 >
                   Services
                 </NavLink>
