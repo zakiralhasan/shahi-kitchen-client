@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import logo1 from "../../../images/logo/logo-5.png";
 import { AuthContext } from "../../../Context/AuthProvider";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -18,20 +19,7 @@ const Navbar = () => {
           <div className=" block sm:hidden">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost btn-circle">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h7"
-                  />
-                </svg>
+                <GiHamburgerMenu className="text-white" />
               </label>
               <ul
                 tabIndex={0}
@@ -54,9 +42,6 @@ const Navbar = () => {
             <div className="">
               <img className="w-40 min-w-[10rem] rounded" src={logo1} alt="" />
             </div>
-            {/* <div className="">
-              <h2 className=" text-3xl font-semibold">Shahi Kitchen</h2>
-            </div> */}
           </div>
 
           <div className="hidden sm:block text-white">
@@ -138,12 +123,12 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-sm w-32"
               >
-                <Link to="/reviews">
-                  <li>My Reviews</li>
-                </Link>
-                <Link to="/add-services">
-                  <li>Add Service</li>
-                </Link>
+                <li>
+                  <Link to="/reviews">My Reviews</Link>
+                </li>
+                <li>
+                  <Link to="/add-services">Add Service</Link>
+                </li>
                 <li>
                   <button onClick={handleUserLogout}>Logout</button>
                 </li>

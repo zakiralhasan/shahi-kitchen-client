@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-gray-600 py-6">
+    <div className="bg-gray-600 py-6 px-2">
       <div className="flex justify-center gap-6 mb-4">
         <a href="https://www.facebook.com/">
           <FaFacebookSquare className="text-white text-2xl" />
