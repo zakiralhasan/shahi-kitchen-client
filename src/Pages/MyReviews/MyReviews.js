@@ -48,43 +48,50 @@ const MyReviews = () => {
   };
   return (
     <div>
-      <h1>my reviews</h1>
-      <div>
-        {myReviews.map((review) => (
-          <div key={review._id}>
-            <div className="min-h-[13rem] border p-4 mx-3 my-6 text-left rounded-md shadow-lg">
-              <div className="flex justify-between">
-                <div className="flex gap-3 items-center">
-                  <img
-                    className="w-10 h-10 rounded-full"
-                    src={review.img}
-                    alt=""
-                  />
-                  <small className="">{review.name}</small>
+      {myReviews?.length > 0 ? (
+        <div>
+          {myReviews.map((review) => (
+            <div key={review._id}>
+              <div className="min-h-[13rem] border p-4 mx-3 my-6 text-left rounded-md shadow-lg">
+                <div className="flex justify-between">
+                  <div className="flex gap-3 items-center">
+                    <img
+                      className="w-10 h-10 rounded-full"
+                      src={review.img}
+                      alt=""
+                    />
+                    <small className="">{review.name}</small>
+                  </div>
+                  <div>
+                    <button className="text-blue-400 font-medium mr-3 ">
+                      <small>Update</small>
+                    </button>
+                    <button
+                      onClick={() => handleDelete(review._id)}
+                      className="text-red-400 font-medium mr-3 "
+                    >
+                      <small>Delete</small>
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <button className="text-blue-400 font-medium mr-3 ">
-                    <small>Update</small>
-                  </button>
-                  <button
-                    onClick={() => handleDelete(review._id)}
-                    className="text-red-400 font-medium mr-3 "
-                  >
-                    <small>Delete</small>
-                  </button>
+                <div className="my-4">
+                  <p>{review.comment}</p>
                 </div>
+                <small>
+                  <span className="font-medium">Ratings: </span>
+                  {review.ratings}
+                </small>
               </div>
-              <div className="my-4">
-                <p>{review.comment}</p>
-              </div>
-              <small>
-                <span className="font-medium">Ratings: </span>
-                {review.ratings}
-              </small>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="h-screen flex justify-center items-center">
+          <h1 className=" text-4xl font-bold text-amber-500">
+            No reviews were added
+          </h1>
+        </div>
+      )}
     </div>
   );
 };

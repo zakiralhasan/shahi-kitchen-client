@@ -44,9 +44,6 @@ const Navbar = () => {
                   <Link to="/services">Services</Link>
                 </li>
                 <li>
-                  <Link to="/FAQ">FAQ</Link>
-                </li>
-                <li>
                   <Link to="/blog">Blog</Link>
                 </li>
               </ul>
@@ -82,16 +79,6 @@ const Navbar = () => {
                   to="/services"
                 >
                   Services
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? `text-red-600 mr-4` : `hover:text-red-600 mr-4`
-                  }
-                  to="/FAQ"
-                >
-                  FAQ
                 </NavLink>
               </li>
               <li>
