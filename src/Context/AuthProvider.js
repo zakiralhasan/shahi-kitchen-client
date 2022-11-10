@@ -2,10 +2,13 @@ import React, { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  GithubAuthProvider,
+  GoogleAuthProvider,
   onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
@@ -15,6 +18,8 @@ export const AuthContext = createContext();
 
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
+  const providerGoogle = new GoogleAuthProvider();
+  const providerGithub = new GithubAuthProvider();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +33,18 @@ const AuthProvider = ({ children }) => {
   const userLoginWithEmailAndPassword = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  //login user through google
+  const loginUserWithGoogle = () => {
+    setLoading(true);
+    return signInWithPopup(auth, providerGoogle);
+  };
+
+  //login user through Github
+  const loginUserWithGithub = () => {
+    setLoading(true);
+    return signInWithPopup(auth, providerGithub);
   };
 
   //take user name and photo URL during registration
@@ -64,6 +81,8 @@ const AuthProvider = ({ children }) => {
     user,
     creatUser,
     userLoginWithEmailAndPassword,
+    loginUserWithGoogle,
+    loginUserWithGithub,
     updateUserProfile,
     logOutUser,
     userEmailVerification,

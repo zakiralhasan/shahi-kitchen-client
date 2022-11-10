@@ -5,8 +5,14 @@ import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
-  const { user, setLoading, userLoginWithEmailAndPassword } =
-    useContext(AuthContext);
+  const {
+    user,
+    setUser,
+    setLoading,
+    userLoginWithEmailAndPassword,
+    loginUserWithGoogle,
+    loginUserWithGithub,
+  } = useContext(AuthContext);
 
   const handleForm = (event) => {
     event.preventDefault();
@@ -18,14 +24,48 @@ const Login = () => {
     userLoginWithEmailAndPassword(email, password)
       .then((result) => {
         const loginUser = result.user;
-        console.log(loginUser);
         form.reset();
+        setUser(loginUser);
         setErrorMessage("");
       })
       .catch((error) => {
         const errorMsg = error.message;
         setErrorMessage(errorMsg);
         form.reset();
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  //user login with google account
+  const loginWithGoogle = () => {
+    loginUserWithGoogle()
+      .then((result) => {
+        const loginUser = result.user;
+        setUser(loginUser);
+        setErrorMessage("");
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        setErrorMessage(errorMsg);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  //user login with github account
+  const loginWithGithub = () => {
+    loginUserWithGithub()
+      .then((result) => {
+        const loginUser = result.user;
+        setUser(loginUser);
+        setErrorMessage("");
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        setErrorMessage(errorMsg);
       })
       .finally(() => {
         setLoading(false);
@@ -84,11 +124,17 @@ const Login = () => {
                 </div>
                 <div className="divider">OR</div>
                 <div className="flex gap-2 text-2xl">
-                  <button className="flex gap-4 items-center w-1/2 bg-blue-400 px-2 py-1 rounded-md text-white hover:bg-gray-700">
+                  <button
+                    onClick={loginWithGoogle}
+                    className="flex gap-4 items-center w-1/2 bg-blue-400 px-2 py-1 rounded-md text-white hover:bg-gray-700"
+                  >
                     <FaGoogle className="" />
                     <small className="text-sm">With Google</small>
                   </button>
-                  <button className="flex gap-4 items-center w-1/2 bg-blue-400 px-2 py-1 rounded-md text-white hover:bg-gray-700">
+                  <button
+                    onClick={loginWithGithub}
+                    className="flex gap-4 items-center w-1/2 bg-blue-400 px-2 py-1 rounded-md text-white hover:bg-gray-700"
+                  >
                     <FaGithub className="" />
                     <small className="text-sm">With Github</small>
                   </button>
