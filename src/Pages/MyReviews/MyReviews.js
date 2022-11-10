@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import swal from "sweetalert";
 import { AuthContext } from "../../Context/AuthProvider";
+import useSetTitle from "../../Hooks/useSetTitle";
 
 const MyReviews = () => {
+  useSetTitle("My-Reviews"); //used custom hook for changing title name.
   const { user } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
 

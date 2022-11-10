@@ -1,8 +1,11 @@
 import React from "react";
+import useSetTitle from "../../Hooks/useSetTitle";
 import jwtImg from "../../images/JWT.png";
 import nodeJsImg from "../../images/nodejs-architecture.png";
 
 const Blog = () => {
+  useSetTitle("Blog"); //used custom hook for changing title name.
+
   return (
     <div className="bg-gray-100">
       <div className="py-8">

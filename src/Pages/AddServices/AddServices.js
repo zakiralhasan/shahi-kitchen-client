@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
 import { AuthContext } from "../../Context/AuthProvider";
+import useSetTitle from "../../Hooks/useSetTitle";
 
 const AddServices = () => {
+  useSetTitle("Add-Services"); //used custom hook for changing title name.
   const { user } = useContext(AuthContext);
 
   //used for add new comment or review.

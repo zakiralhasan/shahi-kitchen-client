@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import useSetTitle from "../../Hooks/useSetTitle";
 
 const Login = () => {
+  useSetTitle("Login"); //used custom hook for changing title name.
   const [errorMessage, setErrorMessage] = useState(null);
   const {
     setUser,
