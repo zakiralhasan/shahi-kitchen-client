@@ -1,18 +1,22 @@
 import React, { useContext, useState } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const {
-    user,
     setUser,
     setLoading,
     userLoginWithEmailAndPassword,
     loginUserWithGoogle,
     loginUserWithGithub,
   } = useContext(AuthContext);
+
+  //used for controlling privet route redirect location
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleForm = (event) => {
     event.preventDefault();
@@ -26,6 +30,7 @@ const Login = () => {
         const loginUser = result.user;
         form.reset();
         setUser(loginUser);
+        navigate(from, { replace: true });
         setErrorMessage("");
       })
       .catch((error) => {
@@ -44,6 +49,7 @@ const Login = () => {
       .then((result) => {
         const loginUser = result.user;
         setUser(loginUser);
+        navigate(from, { replace: true });
         setErrorMessage("");
       })
       .catch((error) => {
@@ -61,6 +67,7 @@ const Login = () => {
       .then((result) => {
         const loginUser = result.user;
         setUser(loginUser);
+        navigate(from, { replace: true });
         setErrorMessage("");
       })
       .catch((error) => {

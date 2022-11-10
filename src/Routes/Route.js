@@ -11,6 +11,7 @@ import ServiceDetails from "../Pages/ServiceDetails/ServiceDetails";
 import ServicesAll from "../Pages/ServicesAll/ServicesAll";
 import Main from "../Layout/Main";
 import MyReviews from "../Pages/MyReviews/MyReviews";
+import PrivetRoute from "./PrivetRoute";
 
 const router = createBrowserRouter([
   {
@@ -27,8 +28,22 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/details/${params.id}`),
       },
       { path: "services", element: <ServicesAll></ServicesAll> },
-      { path: "reviews", element: <MyReviews></MyReviews> },
-      { path: "add-services", element: <AddServices></AddServices> },
+      {
+        path: "reviews",
+        element: (
+          <PrivetRoute>
+            <MyReviews></MyReviews>
+          </PrivetRoute>
+        ),
+      },
+      {
+        path: "add-services",
+        element: (
+          <PrivetRoute>
+            <AddServices></AddServices>
+          </PrivetRoute>
+        ),
+      },
       { path: "login", element: <Login></Login> },
       { path: "register", element: <Register></Register> },
       { path: "reset", element: <Reset></Reset> },
