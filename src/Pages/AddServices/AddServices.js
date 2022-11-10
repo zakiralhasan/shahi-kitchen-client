@@ -30,9 +30,10 @@ const AddServices = () => {
         ratings: ratings,
         price: price,
         details: details,
+        date: new Date(),
       };
 
-      fetch(`http://localhost:5000/services`, {
+      fetch(`https://shahi-kitchen-server.vercel.app/services`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(service),

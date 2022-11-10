@@ -13,7 +13,9 @@ const MyReviews = () => {
   const [myReviews, setMyReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews?email=${user?.email}`)
+    fetch(
+      `https://shahi-kitchen-server.vercel.app/reviews?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setMyReviews(data));
   }, [user?.email, myReviews]);
@@ -28,7 +30,7 @@ const MyReviews = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://shahi-kitchen-server.vercel.app/reviews/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -57,7 +59,7 @@ const MyReviews = () => {
     }).then((value) => {
       if (value) {
         console.log(id);
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://shahi-kitchen-server.vercel.app/reviews/${id}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
