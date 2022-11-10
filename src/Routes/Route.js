@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         path: "details/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`https://shahi-kitchen-server.vercel.app/${params.id}`),
+          fetch(`https://shahi-kitchen-server.vercel.app/details/${params.id}`),
       },
       { path: "services", element: <ServicesAll></ServicesAll> },
       {

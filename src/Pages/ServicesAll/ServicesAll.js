@@ -7,7 +7,7 @@ const ServicesAll = () => {
   const [servicesAll, setServicesAll] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services/all")
+    fetch("https://shahi-kitchen-server.vercel.app/services/all")
       .then((res) => res.json())
       .then((data) => setServicesAll(data));
   }, []);
