@@ -13,7 +13,17 @@ const Services = () => {
   }, []);
 
   return (
-    <div className="my-5">
+    <div className="my-16">
+      <div className="mx-2 md:w-1/2 md:mx-auto mb-8">
+        <h1 className="text-amber-500 font-semibold text-2xl my-2">
+          My provided services.
+        </h1>
+        <p className="text-sm">
+          Please look at below services that I provided. You can choose any one
+          of them and communicate with me. You can also give your feedback
+          through social media, mail, etc.
+        </p>
+      </div>
       <div className="grid sm:grid-cols-3 gap-4 p-4">
         {services.map((service) => (
           <ServiceCard key={service._id} service={service}></ServiceCard>
