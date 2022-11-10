@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import swal from "sweetalert";
 import { AuthContext } from "../../Context/AuthProvider";
 import useSetTitle from "../../Hooks/useSetTitle";
@@ -15,7 +16,7 @@ const MyReviews = () => {
     fetch(`http://localhost:5000/reviews?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyReviews(data));
-  }, [user?.email]);
+  }, [user?.email, myReviews]);
 
   //used for delete single review from reviews collection on mongodb
   const handleDelete = (id) => {
@@ -48,6 +49,39 @@ const MyReviews = () => {
       }
     });
   };
+
+  //used for update single review from reviews collection on mongodb
+  const handleUpdate = (id) => {
+    swal("Please write your updates below box.", {
+      content: "input",
+    }).then((value) => {
+      if (value) {
+        console.log(id);
+        fetch(`http://localhost:5000/reviews/${id}`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ comment: value }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.modifiedCount > 0) {
+              const remainingReviews = myReviews.filter(
+                (review) => review._id !== id
+              );
+              const changedReview = myReviews.find(
+                (review) => review._id === id
+              );
+              const newReviews = [changedReview, ...remainingReviews];
+              setMyReviews(newReviews);
+              toast.success("Your review has been successfully updated!");
+            }
+          });
+      }
+    });
+  };
+
   return (
     <div>
       {myReviews?.length > 0 ? (
@@ -65,7 +99,10 @@ const MyReviews = () => {
                     <small className="">{review.name}</small>
                   </div>
                   <div>
-                    <button className="text-blue-400 font-medium mr-3 ">
+                    <button
+                      onClick={() => handleUpdate(review._id)}
+                      className="text-blue-400 font-medium mr-3 "
+                    >
                       <small>Update</small>
                     </button>
                     <button
