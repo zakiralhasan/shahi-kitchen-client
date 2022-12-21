@@ -7,10 +7,14 @@ import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     fetch("https://shahi-kitchen-server.vercel.app/services")
       .then((res) => res.json())
-      .then((data) => setServices(data));
+      .then((data) => {
+        setServices(data)
+        setLoading(false)
+      });
   }, []);
 
   return (
@@ -26,7 +30,9 @@ const Services = () => {
         </p>
       </div>
       {
-        services ?
+        loading ?
+          <SmallLoader></SmallLoader>
+          :
           <div className="grid sm:grid-cols-3 gap-4 p-4">
             {services.map((service) => (
               <ServiceCard
@@ -36,8 +42,6 @@ const Services = () => {
               ></ServiceCard>
             ))}
           </div>
-          :
-          <SmallLoader></SmallLoader>
       }
       <Link to="/services">
         <button className="text-blue-400 hover:text-white hover:border-white border-2 border-blue-400 px-8 my-2 py-2 rounded-md font-medium hover:bg-gray-700">
