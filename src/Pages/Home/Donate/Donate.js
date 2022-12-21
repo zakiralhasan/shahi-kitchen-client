@@ -1,4 +1,5 @@
 import React from "react";
+import SmallLoader from "../../../Components/SmallLoader/SmallLoader";
 import donateImg from "../../../images/donate-project.png";
 
 const Donate = () => {
@@ -16,11 +17,16 @@ const Donate = () => {
       </div>
       <div className="sm:flex gap-4 items-center border shadow-lg">
         <div className="basis-1/2 p-3">
-          <img
-            className="border-2 rounded-lg shadow-sm"
-            src={donateImg}
-            alt=""
-          />
+          {
+            donateImg ?
+              <img
+                className="border-2 rounded-lg shadow-sm"
+                src={donateImg}
+                alt=""
+              />
+              :
+              <SmallLoader></SmallLoader>
+          }
         </div>
         <div className="basis-1/2 p-2">
           <h1 className="text-2xl font-semibold mb-4">You can join me.</h1>

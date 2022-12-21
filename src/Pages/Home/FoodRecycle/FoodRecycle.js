@@ -1,4 +1,5 @@
 import React from "react";
+import SmallLoader from "../../../Components/SmallLoader/SmallLoader";
 import foodRecycleImg from "../../../images/food-recycle-project.png";
 const FoodRecycle = () => {
   return (
@@ -14,11 +15,16 @@ const FoodRecycle = () => {
       </div>
       <div className="sm:flex gap-4 items-center border shadow-lg">
         <div className="basis-1/2 p-3">
-          <img
-            className="border-2 rounded-lg shadow-sm"
-            src={foodRecycleImg}
-            alt=""
-          />
+          {
+            foodRecycleImg ?
+              <img
+                className="border-2 rounded-lg shadow-sm"
+                src={foodRecycleImg}
+                alt=""
+              />
+              :
+              <SmallLoader></SmallLoader>
+          }
         </div>
         <div className="basis-1/2 p-2">
           <h1 className="text-2xl font-semibold mb-4">You can join me.</h1>

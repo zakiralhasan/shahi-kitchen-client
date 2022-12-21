@@ -29,7 +29,7 @@ const Reset = () => {
     <div>
       <form onSubmit={handleForm}>
         <div className=" bg-base-200">
-          <div className="hero-content flex-col ">
+          <div className="hero-content flex-col mx-auto">
             <div className="card rounded-md flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
               <div className="card-body">
                 <div className="text-center mb-4">
