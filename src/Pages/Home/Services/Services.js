@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SmallLoader from "../../../Components/SmallLoader/SmallLoader";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
@@ -24,15 +25,20 @@ const Services = () => {
           through social media, mail, etc.
         </p>
       </div>
-      <div className="grid sm:grid-cols-3 gap-4 p-4">
-        {services.map((service) => (
-          <ServiceCard
-            key={service._id}
-            service={service}
-            services={services}
-          ></ServiceCard>
-        ))}
-      </div>
+      {
+        services ?
+          <div className="grid sm:grid-cols-3 gap-4 p-4">
+            {services.map((service) => (
+              <ServiceCard
+                key={service._id}
+                service={service}
+                services={services}
+              ></ServiceCard>
+            ))}
+          </div>
+          :
+          <SmallLoader></SmallLoader>
+      }
       <Link to="/services">
         <button className="text-blue-400 hover:text-white hover:border-white border-2 border-blue-400 px-8 my-2 py-2 rounded-md font-medium hover:bg-gray-700">
           Show All
